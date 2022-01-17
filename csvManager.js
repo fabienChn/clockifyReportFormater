@@ -13,12 +13,12 @@ exports.parseCsvFile = (fileName) => {
   }
 };
 
-exports.buildCsvFile = (formatedData, newFileName) => {
+exports.buildCsvFile = (formatedData) => {
   const buffer = xlsx.build([
-    { name: newFileName, data: formatedData },
+    { name: process.env.FILE_NAME, data: formatedData },
   ]);
 
-  const newFileFullPath = `/Users/fabiencohen/Desktop/${newFileName}.xlsx`;
+  const newFileFullPath = `${process.env.OUTPUT_DIRECTORY_PATH}${process.env.FILE_NAME}.xlsx`;
 
   fs.writeFile(newFileFullPath, buffer, (e) => {
     logAndThrowError('Impossible to write file', e);

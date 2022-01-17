@@ -1,4 +1,3 @@
-const { getFileNameFromCommandArgv } = require('./getFileNameFromCommandArgv');
 const { parseCsvFile, buildCsvFile } = require('./csvManager');
 
 require('dotenv').config();
@@ -50,7 +49,7 @@ const formatDataForNewCsvFile = (data) => {
     [
       'Project duration (hh:mm)',
       null,
-      '390:OO',
+      process.env.PROJECT_DURATION,
       null,
       'Client',
       'GoLeasy GmbH',
@@ -61,7 +60,7 @@ const formatDataForNewCsvFile = (data) => {
       '4:00:00',
       null,
       'Freelancer:',
-      'Fabien Cohen',
+      process.env.FREELANCER_NAME,
     ],
     [
       'Remaining hours:',
@@ -74,9 +73,7 @@ const formatDataForNewCsvFile = (data) => {
 };
 
 const boot = async () => {
-  const fileName = getFileNameFromCommandArgv();
-
-  const parsedFile = parseCsvFile(fileName);
+  const parsedFile = parseCsvFile(process.env.INPUT_EXCEL_FILE_PATH);
 
   const data = parsedFileToReadableData(parsedFile);
 
