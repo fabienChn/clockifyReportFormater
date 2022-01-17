@@ -25,15 +25,15 @@ const parsedFileToReadableData = (parsedFile) => {
 };
 
 const formatDataForNewCsvFile = (data) => {
-  const newCsvData = [];
-
-  newCsvData[0] = [
-    'Date', 
-    'Start Time (hh:mm)', 
-    'End Time (hh:mm)', 
-    'Break duration (hh:mm)', 
-    'Time worked (hh:mm)', 
-    'Activity Description'
+  const tableHeader = [
+    [
+      'Date', 
+      'Start Time (hh:mm)', 
+      'End Time (hh:mm)', 
+      'Break duration (hh:mm)', 
+      'Time worked (hh:mm)', 
+      'Activity Description'
+    ]
   ];
 
   const formatedContent = data.map(row => ([
@@ -51,8 +51,8 @@ const formatDataForNewCsvFile = (data) => {
       null,
       process.env.PROJECT_DURATION,
       null,
-      'Client',
-      'GoLeasy GmbH',
+      'Client:',
+      process.env.CLIENT_NAME,
     ],
     [
       'Hours worked',
@@ -66,10 +66,12 @@ const formatDataForNewCsvFile = (data) => {
       'Remaining hours:',
       null,
       '386:00:00',
-    ]
+    ],
+    [null],
+    [null],
   ];
 
-  return newCsvData.concat(formatedContent);
+  return headBlock.concat(tableHeader.concat(formatedContent));
 };
 
 const boot = async () => {
