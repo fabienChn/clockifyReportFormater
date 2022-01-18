@@ -21,6 +21,6 @@ exports.buildCsvFile = (formatedData) => {
   const newFileFullPath = `${process.env.OUTPUT_DIRECTORY_PATH}${process.env.FILE_NAME}.xlsx`;
 
   fs.writeFile(newFileFullPath, buffer, (e) => {
-    logAndThrowError('Impossible to write file', e);
+    console.log(e);
   });
 };

@@ -74,7 +74,7 @@ const formatDataForNewCsvFile = (data) => {
   return headBlock.concat(tableHeader.concat(formatedContent));
 };
 
-const boot = async () => {
+const format = async () => {
   const parsedFile = parseCsvFile(process.env.INPUT_EXCEL_FILE_PATH);
 
   const data = parsedFileToReadableData(parsedFile);
@@ -88,4 +88,4 @@ const boot = async () => {
   }
 };
 
-boot();
+format();
