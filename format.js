@@ -7,7 +7,7 @@ const parsedFileToReadableData = (parsedFile) => {
 
   data.shift();
 
-  const readableData = data.map(row => {
+  const readableData = data.reverse().map(row => {
     const filteredRow = row.filter((_, index) => (
       [2, 8, 9, 11, 12].indexOf(index) > -1
     ));
@@ -30,7 +30,6 @@ const formatDataForNewCsvFile = (data) => {
       'Date', 
       'Start Time (hh:mm)', 
       'End Time (hh:mm)', 
-      'Break duration (hh:mm)', 
       'Time worked (hh:mm)', 
       'Activity Description'
     ]
@@ -40,7 +39,6 @@ const formatDataForNewCsvFile = (data) => {
     row.date,
     row.start_time,
     row.end_time,
-    null,
     row.time_worked,
     row.activity_description,
   ]));
